@@ -1,0 +1,14 @@
+{% extends 'blocks/wrapper.html' %}
+{% load static %}
+{% block content %}
+    <div class="container content" style="text-align: center;">
+        <div style="width: 300px; display: inline-block;">
+            <h2>Регистрация</h2>
+            <form method="post" class="bootstrap-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-success" value="Регистрация">
+            </form>
+        </div>
+    </div>
+{% endblock %}

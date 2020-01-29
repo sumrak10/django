@@ -1,0 +1,45 @@
+{% extends 'blocks/wrapper.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+body{
+    background-color: #efefef;
+}
+.content{
+    border: 1px solid #e2e2e2;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 0 5px -4px rgba(128, 128, 128, 0.69);
+    background: white;
+    min-height: 500px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+ul.errorlist{
+    color: red;
+    list-style: none;
+    font-size: 12px;
+}
+.avatar-img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+</style>
+<section style="background: url('{% static '/images/basic_bg.jpg' %}'); background-size: cover; background-position: center;">
+	<div style="padding-top: 9vh;"></div>
+	<div class="container content">
+        <h2 class="text-center">Добро пожаловать в мини Соцсеть!</h2>
+        <div class="text-center">
+            <br>
+            <br>
+            <br>
+            <a href="{% url 'login' %}" class="btn btn-info">Войти</a>
+            <a href="{% url 'register' %}" class="btn btn-primary">Регистрация</a>
+        </div>
+    </div>
+    {% include 'registration/messages.html' %}
+</section>
+{% endblock %}

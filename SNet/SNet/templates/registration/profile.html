@@ -1,0 +1,50 @@
+{% extends 'blocks/wrapper.html' %}
+{% load static %}
+{% block content %}
+<div style="background-image: url('../../../media/basic_bg.jpg'); height: 100vh; color: white;">
+    <div class="container content">
+        <div class="row" style="margin-left: 20px;" >
+            <div class="col5" style=" background-color: #00000099; margin: 10px; padding: 20px;">
+                {% if selected_user.profile.avatar.name %}
+                    <img src="{{ selected_user.profile.avatar.url }}" style="width: 200px; width: 200px;">
+                {% else %}
+                    <img src="{% static 'img/user.jpg' %}" class="avatar">
+                {% endif %}
+                <br>
+                <br>
+                <p>{{ selected_user.get_full_name }}</p>
+                <ul>
+                {% if selected_user.id == user.id %}
+                    <li><a href="{% url 'edit_profile' %}" class="btn btn-sm btn-info">Редактировать профиль</a></li>
+                {% endif %}
+                <li><a href="#" class="btn btn-sm btn-info">Друзья</a></li>
+                <li><a href="#" class="btn btn-sm btn-info">Фото</a></li>
+                <li><a href="#" class="btn btn-sm btn-info">Видео</a></li>
+                <li><a href="#" class="btn btn-sm btn-info">Документы</a></li>
+                <li><a href="#" class="btn btn-sm btn-info">Музыка</a></li>
+                </ul>
+            </div>
+            <div class="col" style=" background-color: #00000099; margin: 10px; padding: 20px;">
+                <dl class="row">
+                    <dt class="col-sm-3 text-right">Полное имя</dt>
+                    <dd class="col-sm-9">{{ selected_user.get_full_name }}</dd>
+                    {% if selected_user.id == user.id %}
+                    <dt class="col-sm-3 text-right">Email</dt>
+                    <dd class="col-sm-9">{{ selected_user.email }}</dd>
+                    {% endif %}
+                    <dt class="col-sm-3 text-right">Город</dt>
+                    <dd class="col-sm-9">{{ selected_user.profile.city }}</dd>
+                    <dt class="col-sm-3 text-right">Дата рождения</dt>
+                    <dd class="col-sm-9">{{ selected_user.profile.birth_date|date:"d M Y" }}</dd>
+                    <dt class="col-sm-3 text-right">Пол</dt>
+                    <dd class="col-sm-9">{{ selected_user.profile.get_gender_display }}</dd>
+                    <dt class="col-sm-3 text-right">Статус отношений</dt>
+                    <dd class="col-sm-9">{{ selected_user.profile.get_relationship_display }}</dd>
+                    <dt class="col-sm-3 text-right">О себе</dt>
+                    <dd class="col-sm-9"><em style="font-family: 'Times New Roman', serif;">{{ selected_user.profile.bio|linebreaks }}</em></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
